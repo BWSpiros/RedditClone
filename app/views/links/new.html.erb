@@ -1,0 +1,19 @@
+<h1>Post a Link!</h1>
+<form action="<%= links_url %>" method="post">
+  <p>
+    <label>Title
+      <input type="text" name="link[title]" value="<%= @link.title %>">
+    </label>
+  </p>
+  <p>
+    <label>URL
+      <input type="url" name="link[url]" value="<%= @link.url %>">
+    </label>
+  </p>
+  <p>
+    <label>
+      <input type="submit" name="submit" value="Post Link">
+    </label>
+  </p>
+
+</form>

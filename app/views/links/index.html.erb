@@ -1,0 +1,12 @@
+<h1>Go forth and Procrastinate!</h1>
+<ul>
+<% @links.each do |link| %>
+<li>
+<%= link.title %>
+<ul>
+  <li>
+    <%= link_to link.url, link.url %>
+  </li>
+</ul>
+</li>
+<% end %>
