@@ -33,5 +33,8 @@ RedditClone::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
+  config.action_mailer.delivery_method = :letter_opener
   config.assets.debug = true
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+
 end

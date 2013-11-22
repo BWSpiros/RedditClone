@@ -1,8 +1,15 @@
 RedditClone::Application.routes.draw do
 
+  get "password_resets/new"
+
+
+
   resources :users
   resources :links
   resource :session
+  resources :password_resets
+
+  root to: 'links#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

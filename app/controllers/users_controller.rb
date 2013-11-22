@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+
+  skip_before_filter :logged_in?, only: [:create,:new,:update]
+
   def new
     @user = User.new
   end
@@ -18,9 +22,27 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.new(params[:user])
-    @user.update_attributes
-    redirect_to user_url(@user)
+    @user = current_user
+    @user = User.find_by_password_reset_token(params[:password_reset_token]) unless @user
+
+    if @user && !@user.password_reset_token.nil?
+      fail
+
+      @user.password_reset_token = nil
+      @user.password = params[:password]
+      @user.save
+      redirect_to new_session_url
+
+    elsif @user
+      fail
+      @user.update_attributes(params[:user])
+      redirect_to root_url
+
+    else
+      flash[:error] = "Fuck off"
+      redirect_to new_session_url
+    end
+
   end
 
   def show

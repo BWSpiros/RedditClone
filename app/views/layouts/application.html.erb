@@ -2,13 +2,11 @@
 <html>
 <head>
   <title>RedditClone</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<%= button_to "Sign Out", session_url, method: :delete %>
 <body>
-
+<%= (button_to "Sign Out", session_url, method: :delete) if current_user %>
+<%= flash_errors %>
 <%= yield %>
 
 </body>

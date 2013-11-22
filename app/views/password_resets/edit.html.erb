@@ -1,0 +1,12 @@
+<h1>Update Password</h1>
+<form action="<%= user_url(@user) %>" method="post" >
+  <%= auth %>
+  <input type="hidden" name="_method" value="put" >
+  <input type="hidden" name="password_reset_token" value="<%= @user.password_reset_token %>" >
+  <label>Password
+    <input type='password' name='user[password]' >
+  </label>
+  <label>Update password
+    <input type='submit' value='Update password'>
+  </label>
+</form>

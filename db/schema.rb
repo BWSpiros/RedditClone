@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131120223558) do
+ActiveRecord::Schema.define(:version => 20131121211730) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -35,12 +35,37 @@ ActiveRecord::Schema.define(:version => 20131120223558) do
 
   add_index "links", ["poster_id"], :name => "index_links_on_poster_id"
 
+  create_table "member_tables", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sub_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "moderator_tables", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sub_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "subs", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.boolean  "private"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.string   "token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "username"
   end
 
 end

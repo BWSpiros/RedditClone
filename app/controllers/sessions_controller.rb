@@ -1,4 +1,8 @@
 class SessionsController < ApplicationController
+
+  skip_before_filter :logged_in?, only: [:create,:new]
+
+
   def new
     @user = User.new
   end
@@ -9,14 +13,15 @@ class SessionsController < ApplicationController
       session[:token] = @user.reset_token
       redirect_to links_url
     else
-      flash.now[:errors] = @user.errors
-      render :new
+      flash[:errors] = "Invalid Login1"
+      redirect_to new_session_url
     end
   end
 
   def destroy
+    #fail
+    current_user.reset_token
     session[:token] = nil
-    current_user.reset_token if logged_in?
     redirect_to new_session_url
   end
 

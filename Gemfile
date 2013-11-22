@@ -13,11 +13,13 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'faker'
+  gem 'letter_opener'
+
 end
 
 group :test do
   gem 'guard-rspec'
-  gem 'faker'
   gem 'capybara'
   gem 'launchy'
 end
